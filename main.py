@@ -12,27 +12,41 @@ coordOptions = {
     2: 'z',
 }
 
-time.sleep(2)
-pydirectinput.click(240, 240)
-# while True:
-#     pic = pyautogui.screenshot(region=(320, 210, 290, 50))
-#     # pic.save('ok.png')
-#     coords = pytesseract.image_to_string(pic)
-#     # coords = coords.split(' ')
-#     print(coords.split(','), 'coords')
-#     coords = coords.split(',')
-#     i = 0
-#     for coord in coords:
-#         coord = coord.replace(')', ' ')
-#         coord = coord.replace('(', ' ') 
-#         coord = coord.replace('/', ' ') 
-#         coord = coord.replace('|', ' ') 
-#         try:
-#             coord = int(coord)
+currentCoords = {
+    'x': 0,
+    'y': 0,
+    'z': 0,
+}
 
-#             print(f"{coordOptions[i]}={coord}")
-#             i += 1
-#         except:
-#             print('error')
+farmCoords = [51, 71, 47]
+
+time.sleep(2)
+while True:
+    pic = pyautogui.screenshot(region=(320, 210, 290, 50))
+    # pic.save('ok.png')
+    coords = pytesseract.image_to_string(pic)
+    # coords = coords.split(' ')
+    print(coords.split(','), 'coords')
+    coords = coords.split(',')
+    i = 0
+    for coord in coords:
+        coord = coord.replace(')', ' ')
+        coord = coord.replace('(', ' ') 
+        coord = coord.replace('/', ' ') 
+        coord = coord.replace('|', ' ') 
+        try:
+            coord = int(coord)
+            coordType = coordOptions[i]
+            currentCoords[f"{coordType}"] = coord
+            print(f"{coordType}={coord}")
+            i += 1
+            print(list(currentCoords.values()) == farmCoords)
+            if list(currentCoords.values()) == farmCoords:
+                pyautogui.keyDown('W')
+                pyautogui.keyDown('D')
+                pyautogui.mouseDown()
+                print("LETS GO")
+        except:
+            print('error')
         
-#     time.sleep(0.1)
+    time.sleep(0.1)
