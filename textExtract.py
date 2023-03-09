@@ -22,5 +22,5 @@ def extractText(image):
         cropped = im2[y:y + h, x:x + w]
         text = pytesseract.image_to_string(cropped)
         print(text)
-        textList.append(text)
-    return textList
+        textList.append(text.strip())
+    return textList[0]
