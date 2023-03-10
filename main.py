@@ -26,14 +26,22 @@ stateKeys = {
     'forward': ['W', 'D'],
     'backwards': ['S']
 }
+farmPoints = {
+    'forwards': -47,
+    'backwards': 47
+}
 
 farmCoords = [51, 71, 47]
 
-def move(keys):
+def move(keys, keyUpAll=False):
+    allKeys = ['W', 'A', 'S', 'D']
+    if keyUpAll:
+        for key in allKeys:
+            pyautogui.keyUp(key)
+        pyautogui.mouseUp()
+
     for key in keys:
         pyautogui.keyDown(key)
-    pyautogui.mouseUp()
-
 
 
 time.sleep(3)
