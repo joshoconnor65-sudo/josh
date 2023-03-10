@@ -21,12 +21,20 @@ currentCoords = {
     'z': 0,
 }
 
+state = 'forward'
+stateKeys = {
+    'forward': ['W', 'D'],
+    'backwards': ['S']
+}
+
 farmCoords = [51, 71, 47]
 
 def move(keys):
     for key in keys:
         pyautogui.keyDown(key)
     pyautogui.mouseUp()
+
+
 
 time.sleep(3)
 subprocess.run(["moveMouse.exe"])
