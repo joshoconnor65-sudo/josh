@@ -23,6 +23,11 @@ currentCoords = {
 
 farmCoords = [51, 71, 47]
 
+def move(keys):
+    for key in keys:
+        pyautogui.keyDown(key)
+    pyautogui.mouseUp()
+
 time.sleep(3)
 subprocess.run(["moveMouse.exe"])
 while True:
@@ -39,15 +44,14 @@ while True:
 
         coordType = coordOptions[i]
         currentCoords[f"{coordType}"] = coord
+
         print(f"{coordType}={coord}")
-        i += 1
-        print(list(currentCoords.values()) == farmCoords)
         if list(currentCoords.values()) == farmCoords:
-            
-            pyautogui.keyDown('W')
-            pyautogui.keyDown('D')
+            move(['W', 'D'])
             pyautogui.mouseDown()
-            print("LETS GO")
+
+        i += 1
+
   
         
     time.sleep(0.1)
