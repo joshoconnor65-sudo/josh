@@ -24,23 +24,27 @@ currentCoords = {
 state = 'forward'
 stateKeys = {
     'forward': ['W', 'D'],
-    'backwards': ['S']
+    'backward': ['S'],
+    'switchToBackward': ['S', 'D'],
+    'switchToForward': ['W', 'D']
 }
 farmPoints = {
-    'forwards': -47,
-    'backwards': 47
+    'forward': -142,
+    'backward': 47
 }
+
+farmPoints[state]
 
 farmCoords = [51, 71, 47]
 
 def move(keys, keyUpAll=False):
     allKeys = ['W', 'A', 'S', 'D']
     if keyUpAll:
-        for key in allKeys:
-            pyautogui.keyUp(key)
+        for key2 in allKeys:
+            pyautogui.keyUp(key2)
         pyautogui.mouseUp()
-
     for key in keys:
+        print('keydown', key)
         pyautogui.keyDown(key)
 
 
@@ -61,10 +65,27 @@ while True:
         coordType = coordOptions[i]
         currentCoords[f"{coordType}"] = coord
 
-        print(f"{coordType}={coord}")
-        if list(currentCoords.values()) == farmCoords:
-            move(['W', 'D'])
-            pyautogui.mouseDown()
+        print('STATE', farmPoints[state])
+
+        if (coordType == 'z' and coord == farmPoints[state]):
+            pyautogui.mouseUp()
+            if state == 'forward':
+                state = 'backward'
+            else:
+                state = 'forward'
+
+            if state == 'backward':
+                print('before')
+                move(['S', 'D'], keyUpAll=True)
+                time.sleep(3)
+                move(stateKeys['backward'], keyUpAll=True)   
+                pyautogui.mouseDown()    
+
+            else:
+                move(stateKeys['forward'], keyUpAll=True)
+                time.sleep(3.5)
+                pyautogui.mouseDown()    
+            pass
 
         i += 1
 
