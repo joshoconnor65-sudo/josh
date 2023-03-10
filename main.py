@@ -7,6 +7,7 @@ import pytesseract
 from PIL import Image
 import pydirectinput
 import subprocess
+from dataValidators import isInt
 coordOptions = {
     0: 'x',
     1: 'y',
@@ -34,10 +35,8 @@ while True:
         coord = coord.replace('(', ' ') 
         coord = coord.replace('/', ' ') 
         coord = coord.replace('|', ' ') 
-        print(coord, 'coord')
-        if coord.isdigit():
-            coord = int(coord)
-        else:
+        coord = isInt(coord)
+        if not coord:
             break
 
         coordType = coordOptions[i]
