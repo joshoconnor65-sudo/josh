@@ -6,6 +6,7 @@ import time
 import pytesseract
 from PIL import Image
 import pydirectinput
+import subprocess
 coordOptions = {
     0: 'x',
     1: 'y',
@@ -20,33 +21,36 @@ currentCoords = {
 
 farmCoords = [51, 71, 47]
 
-time.sleep(2)
+time.sleep(3)
+subprocess.run(["moveMouse.exe"])
 while True:
     pic = pyautogui.screenshot(region=(320, 210, 290, 50))
-    # pic.save('ok.png')
     coords = pytesseract.image_to_string(pic)
-    # coords = coords.split(' ')
-    print(coords.split(','), 'coords')
     coords = coords.split(',')
     i = 0
     for coord in coords:
+        
         coord = coord.replace(')', ' ')
         coord = coord.replace('(', ' ') 
         coord = coord.replace('/', ' ') 
         coord = coord.replace('|', ' ') 
-        try:
+        print(coord, 'coord')
+        if coord.isdigit():
             coord = int(coord)
-            coordType = coordOptions[i]
-            currentCoords[f"{coordType}"] = coord
-            print(f"{coordType}={coord}")
-            i += 1
-            print(list(currentCoords.values()) == farmCoords)
-            if list(currentCoords.values()) == farmCoords:
-                pyautogui.keyDown('W')
-                pyautogui.keyDown('D')
-                pyautogui.mouseDown()
-                print("LETS GO")
-        except:
-            print('error')
+        else:
+            break
+
+        coordType = coordOptions[i]
+        currentCoords[f"{coordType}"] = coord
+        print(f"{coordType}={coord}")
+        i += 1
+        print(list(currentCoords.values()) == farmCoords)
+        if list(currentCoords.values()) == farmCoords:
+            
+            pyautogui.keyDown('W')
+            pyautogui.keyDown('D')
+            pyautogui.mouseDown()
+            print("LETS GO")
+  
         
     time.sleep(0.1)
