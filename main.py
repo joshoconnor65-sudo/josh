@@ -8,6 +8,7 @@ from PIL import Image
 import pydirectinput
 import subprocess
 from dataValidators import isInt
+from dataProcessing import removeUselessCharacters
 coordOptions = {
     0: 'x',
     1: 'y',
@@ -31,10 +32,7 @@ while True:
     i = 0
     for coord in coords:
         
-        coord = coord.replace(')', ' ')
-        coord = coord.replace('(', ' ') 
-        coord = coord.replace('/', ' ') 
-        coord = coord.replace('|', ' ') 
+        coord = removeUselessCharacters(coord)
         coord = isInt(coord)
         if not coord:
             break
