@@ -50,6 +50,7 @@ def move(keys, keyUpAll=False):
 
 time.sleep(3)
 subprocess.run(["moveMouse.exe"])
+lastCoords = []
 while True:
     pic = pyautogui.screenshot(region=(320, 210, 290, 50))
     coords = pytesseract.image_to_string(pic)
@@ -64,8 +65,11 @@ while True:
 
         coordType = coordOptions[i]
         currentCoords[f"{coordType}"] = coord
-
+        print(currentCoords)
         print('STATE', farmPoints[state])
+
+        if (currentCoords['x'] == 142 and currentCoords['z'] < -130):
+            time.sleep(10000)
 
         if (coordType == 'z' and coord == farmPoints[state]):
             pyautogui.mouseUp()
@@ -89,6 +93,16 @@ while True:
 
         i += 1
 
-  
+    lastCoords.append(currentCoords['z'])
+    if len(lastCoords) >= 6:
+        repeatedCoords = lastCoords.count(lastCoords[0])
+        if repeatedCoords > 3:
+            pyautogui.mouseUp()
+            move('A', keyUpAll=True)
+            time.sleep(2)
+            move(stateKeys[state], keyUpAll=True)
+            pyautogui.mouseDown()
+        repeatedCoords = []
+        
         
     time.sleep(0.1)
