@@ -58,17 +58,14 @@ while True:
     if not coords:
         continue
     x,y,z = coords
-    print(x,y,z,'coords')
 
     coordType = coordOptions[i]
     currentCoords[f"{coordType}"] = x
-    print(currentCoords)
-    print('STATE', farmPoints[state])
 
-    if (currentCoords['x'] == 142 and currentCoords['z'] < -130):
+    if (x == 142 and z < -130):
         time.sleep(10000)
-
-    if (coordType == 'z' and coord == farmPoints[state]):
+ 
+    if (z and x == farmPoints[state]):
         pyautogui.mouseUp()
         if state == 'forward':
             state = 'backward'
