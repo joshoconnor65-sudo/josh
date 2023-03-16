@@ -83,7 +83,6 @@ while True:
             move(stateKeys['forward'], keyUpAll=True)
             time.sleep(3.5)
             pyautogui.mouseDown()    
-        pass
 
         i += 1
 
