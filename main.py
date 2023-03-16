@@ -11,8 +11,8 @@ from dataValidators import isInt
 from dataProcessing import removeUselessCharacters
 from constants import *
 
-farmPoints[state]
 state = 'forward'
+farmPoints[state]
 
 
 def move(keys, keyUpAll=False):
@@ -31,7 +31,6 @@ while True:
     pic = pyautogui.screenshot(region=(320, 210, 290, 50))
     coords = pytesseract.image_to_string(pic)
     coords.split(',')
-    i = 0
     coords = removeUselessCharacters(coords)
     if not coords:
         continue
@@ -61,8 +60,6 @@ while True:
             move(stateKeys['forward'], keyUpAll=True)
             time.sleep(3.5)
             pyautogui.mouseDown()    
-
-        i += 1
 
         
         
