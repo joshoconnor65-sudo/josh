@@ -10,7 +10,6 @@ currentCoords = {
     'z': 0,
 }
 
-state = 'forward'
 stateKeys = {
     'forward': ['W', 'D'],
     'backward': ['S'],
