@@ -12,6 +12,7 @@ from dataProcessing import removeUselessCharacters
 from constants import *
 
 farmPoints[state]
+state = 'forward'
 
 
 def move(keys, keyUpAll=False):
