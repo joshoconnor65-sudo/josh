@@ -9,33 +9,10 @@ import pydirectinput
 import subprocess
 from dataValidators import isInt
 from dataProcessing import removeUselessCharacters
-coordOptions = {
-    0: 'x',
-    1: 'y',
-    2: 'z',
-}
-
-currentCoords = {
-    'x': 0,
-    'y': 0,
-    'z': 0,
-}
-
-state = 'forward'
-stateKeys = {
-    'forward': ['W', 'D'],
-    'backward': ['S'],
-    'switchToBackward': ['S', 'D'],
-    'switchToForward': ['W', 'D']
-}
-farmPoints = {
-    'forward': -142,
-    'backward': 47
-}
+from costants import *
 
 farmPoints[state]
 
-farmCoords = [51, 71, 47]
 
 def move(keys, keyUpAll=False):
     allKeys = ['W', 'A', 'S', 'D']
