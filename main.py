@@ -87,16 +87,6 @@ while True:
 
         i += 1
 
-    lastCoords.append(currentCoords['z'])
-    if len(lastCoords) >= 6:
-        repeatedCoords = lastCoords.count(lastCoords[0])
-        if repeatedCoords > 3:
-            pyautogui.mouseUp()
-            move('A', keyUpAll=True)
-            time.sleep(2)
-            move(stateKeys[state], keyUpAll=True)
-            pyautogui.mouseDown()
-        repeatedCoords = []
         
         
     time.sleep(0.1)
