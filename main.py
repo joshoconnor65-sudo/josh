@@ -56,40 +56,39 @@ while True:
     coords = pytesseract.image_to_string(pic)
     coords = coords.split(',')
     i = 0
-    for coord in coords:
-        
-        coord = removeUselessCharacters(coord)
-        coord = isInt(coord)
-        if not coord:
-            break
+    coords = [removeUselessCharacters(coords[0])]
+    coord = removeUselessCharacters(coord)
+    coord = isInt(coord)
+    if not coord:
+        break
 
-        coordType = coordOptions[i]
-        currentCoords[f"{coordType}"] = coord
-        print(currentCoords)
-        print('STATE', farmPoints[state])
+    coordType = coordOptions[i]
+    currentCoords[f"{coordType}"] = coord
+    print(currentCoords)
+    print('STATE', farmPoints[state])
 
-        if (currentCoords['x'] == 142 and currentCoords['z'] < -130):
-            time.sleep(10000)
+    if (currentCoords['x'] == 142 and currentCoords['z'] < -130):
+        time.sleep(10000)
 
-        if (coordType == 'z' and coord == farmPoints[state]):
-            pyautogui.mouseUp()
-            if state == 'forward':
-                state = 'backward'
-            else:
-                state = 'forward'
+    if (coordType == 'z' and coord == farmPoints[state]):
+        pyautogui.mouseUp()
+        if state == 'forward':
+            state = 'backward'
+        else:
+            state = 'forward'
 
-            if state == 'backward':
-                print('before')
-                move(['S', 'D'], keyUpAll=True)
-                time.sleep(3)
-                move(stateKeys['backward'], keyUpAll=True)   
-                pyautogui.mouseDown()    
+        if state == 'backward':
+            print('before')
+            move(['S', 'D'], keyUpAll=True)
+            time.sleep(3)
+            move(stateKeys['backward'], keyUpAll=True)   
+            pyautogui.mouseDown()    
 
-            else:
-                move(stateKeys['forward'], keyUpAll=True)
-                time.sleep(3.5)
-                pyautogui.mouseDown()    
-            pass
+        else:
+            move(stateKeys['forward'], keyUpAll=True)
+            time.sleep(3.5)
+            pyautogui.mouseDown()    
+        pass
 
         i += 1
 
