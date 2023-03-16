@@ -48,21 +48,20 @@ def move(keys, keyUpAll=False):
         pyautogui.keyDown(key)
 
 
-time.sleep(3)
-subprocess.run(["moveMouse.exe"])
 lastCoords = []
 while True:
     pic = pyautogui.screenshot(region=(320, 210, 290, 50))
     coords = pytesseract.image_to_string(pic)
-    coords = coords.split(',')
+    coords.split(',')
     i = 0
-    coord = removeUselessCharacters([coords])
-    coord = isInt(coord)
-    if not coord:
-        break
+    coords = removeUselessCharacters(coords)
+    if not coords:
+        continue
+    x,y,z = coords
+    print(x,y,z,'coords')
 
     coordType = coordOptions[i]
-    currentCoords[f"{coordType}"] = coord
+    currentCoords[f"{coordType}"] = x
     print(currentCoords)
     print('STATE', farmPoints[state])
 
