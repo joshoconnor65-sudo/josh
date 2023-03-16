@@ -56,8 +56,7 @@ while True:
     coords = pytesseract.image_to_string(pic)
     coords = coords.split(',')
     i = 0
-    coords = [removeUselessCharacters(coords[0])]
-    coord = removeUselessCharacters(coord)
+    coord = removeUselessCharacters([coords])
     coord = isInt(coord)
     if not coord:
         break

@@ -1,7 +1,11 @@
 
-def removeUselessCharacters(str):
-    str = str.replace(')', ' ')
-    str = str.replace('(', ' ') 
-    str = str.replace('/', ' ') 
-    str = str.replace('|', ' ') 
-    return str
+def removeUselessCharacters(itemsList):
+    items = []
+    for item in itemsList:
+
+        item = item.replace(')', ' ')
+        item = item.replace('(', ' ') 
+        item = item.replace('/', ' ') 
+        item = item.replace('|', ' ') 
+        items.append(item)
+    return items
