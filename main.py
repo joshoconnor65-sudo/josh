@@ -9,7 +9,7 @@ import pydirectinput
 import subprocess
 from dataValidators import isInt
 from dataProcessing import removeUselessCharacters
-from costants import *
+from constants import *
 
 farmPoints[state]
 
