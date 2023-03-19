@@ -1,5 +1,6 @@
 import pyautogui
-
+import pytesseract
+from dataProcessing import removeUselessCharacters
 def move(keys, keyUpAll=False):
     allKeys = ['W', 'A', 'S', 'D']
     if keyUpAll:
@@ -9,3 +10,10 @@ def move(keys, keyUpAll=False):
     for key in keys:
         print('keydown', key)
         pyautogui.keyDown(key)
+
+def extractCoords():
+    pic = pyautogui.screenshot(region=(320, 210, 290, 50))
+    coords = pytesseract.image_to_string(pic)
+    coords.split(',')
+    coords = removeUselessCharacters(coords)
+    return coords

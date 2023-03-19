@@ -8,24 +8,18 @@ from PIL import Image
 import pydirectinput
 import subprocess
 from dataValidators import isInt
-from dataProcessing import removeUselessCharacters
+from botBrain import extractCoords
 from constants import *
 
 state = 'forward'
-farmPoints[state]
-
-
-
-
 
 lastCoords = []
 while True:
-    pic = pyautogui.screenshot(region=(320, 210, 290, 50))
-    coords = pytesseract.image_to_string(pic)
-    coords.split(',')
-    coords = removeUselessCharacters(coords)
+    coords = extractCoords()
+
     if not coords:
         continue
+
     x,y,z = coords
 
     coordType = coordOptions[i]
