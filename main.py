@@ -15,8 +15,8 @@ while True:
 
     x,y,z = coords
 
- 
-    if (z == farmPoints[state] or x == farmPoints[state]):
+    farmPoint = farmPoints[state]
+    if (z == farmPoint or x == farmPoint):
         pyautogui.mouseUp()
         if state == 'forward':
             state = 'backward'
