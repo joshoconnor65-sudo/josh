@@ -8,7 +8,7 @@ state = 'forward'
 
 lastCoords = []
 while True:
-    coords = extractCoords()
+    coords = extractCoords(regionCoords=(320, 210, 290, 50))
 
     if not coords:
         continue
