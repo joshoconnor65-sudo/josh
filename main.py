@@ -22,9 +22,6 @@ while True:
 
     x,y,z = coords
 
-    coordType = coordOptions[i]
-    currentCoords[f"{coordType}"] = x
-
  
     if (z and x == farmPoints[state]):
         pyautogui.mouseUp()
