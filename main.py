@@ -1,15 +1,8 @@
 import pyautogui
-from textExtract import extractText
-import numpy as np
-import cv2
 import time
-import pytesseract
-from PIL import Image
-import pydirectinput
-import subprocess
-from dataValidators import isInt
 from botBrain import extractCoords
 from constants import *
+from botBrain import move
 
 state = 'forward'
 
