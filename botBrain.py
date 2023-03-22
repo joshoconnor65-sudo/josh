@@ -17,7 +17,11 @@ def move(keys, keyUpAll=False):
 def extractCoords(regionCoords):
     pic = pyautogui.screenshot(region=regionCoords)
     coords = pytesseract.image_to_string(pic)
-    coords = coords.split(',')
+    
+    if '.' in coords:
+         coords = coords.split('. ')
+    else:
+        coords = coords.split(', ')
     coords = removeUselessCharacters(coords)
     return coords
 
