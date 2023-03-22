@@ -27,11 +27,11 @@ def extractCoords(regionCoords):
 
 def moveByState(state):
     if state == 'backward':
-            print('before')
-            move(['S', 'D'], keyUpAll=True)
-            time.sleep(3)
-            move(stateKeys['backward'], keyUpAll=True)   
-            pyautogui.mouseDown()    
+        print('before')
+        move(['S', 'D'], keyUpAll=True)
+        time.sleep(3)
+        move(stateKeys['backward'], keyUpAll=True)   
+        pyautogui.mouseDown()    
 
     else:
         move(stateKeys['forward'], keyUpAll=True)
