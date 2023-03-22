@@ -10,6 +10,8 @@ currentCoords = {
     'z': 0,
 }
 
+allKeys = ['W', 'A', 'S', 'D']
+
 stateKeys = {
     'forward': ['W', 'D'],
     'backward': ['S'],
