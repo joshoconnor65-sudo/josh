@@ -5,8 +5,8 @@ from constants import *
 import time
 
 def move(keys, keyUpAll=False):
-    allKeys = ['W', 'A', 'S', 'D']
     if keyUpAll:
+        allKeys = ['W', 'A', 'S', 'D']
         for key2 in allKeys:
             pyautogui.keyUp(key2)
         pyautogui.mouseUp()
